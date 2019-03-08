@@ -14,61 +14,48 @@ h1
     font-size: 2em;
     border-bottom: 1px solid black;
 }
+/*  Burger image size*/
+img
+{
+    width : 10%;
+    height: 80px;
+}
 
+/* Subtitles sizes */
 td, h2
 {
     text-align: left;  
     padding : 8px;
 }
 
-.burger
-{
-    width : 10%;
-}
-/* Column Header styles*/
+
+/* Subtitle font styles*/
  h2
 {
     color: darkorange;
-    font-family: 'Courgette', cursive;
-    
+    font-family: cursive;
 }
 
-
-.btn-outline {
+/* trash button styles */
+.remove-btn{
     background-color: transparent;
-    border-color: transparent;
-    box-shadow: none;
-}
-.fas
-{
     color:red;
-    background-color: black;
-    opacity: 0.8;
+    width : 50px;
+    padding: 0%;
 }
+
+/* Strike through line after burger is devoured*/
 .strikethrough
 {
     text-decoration:line-through;
 }
 
-/* Width for buttons displaying anime*/
+/* Width for buttons displaying devour*/
 .devour-btn
 {
     width: 100px;
 }
 
-/* Width for X remove button */
-.remove-btn
-{
-    width : 50px;
-    padding: 0%;
-}
-
-/*  image size*/
-img
-{
-    width: 80%;
-    height: 80px;
-}
 
 
 

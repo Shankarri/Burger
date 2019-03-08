@@ -2,47 +2,54 @@ var express = require("express");
 
 var router = express.Router();
 
-// Import the model (cat.js) to use its database functions.
+// Import the model (burger.js) to use its database functions.
 var burger = require("../models/burger.js");
 
-
-// Create all our routes and set up logic within those routes where required.
+// method for / route connecting with db method for select all
 router.get("/", function(req, res) {
     burger.all(function(data) {
      
       var hbsObject = {
         burgers: data
       };
-      //  console.log(hbsObject);
+      // after we get the response, render the values in index handlebars file
       res.render("index", hbsObject);
     });
   });
   
+ //add a new burger into the database.
   router.post("/api/burger", function(req, res) {
     console.log("req.body.name",req.body.name);
+
+    // pass the table column name and values for the column to insert record
     burger.create("burger_name , devoured",
       req.body.name , function(result) {
-      // Send back the ID of the new quote
+      // Send back the ID of the new burger as reponse
       res.json({ id: result.insertId });
     });
   });
   
+  // Method to Update the burger table devoured value to true if devour button is selected 
   router.put("/api/burger/:id", function(req, res) {
+
+    //get the id from the url
     var condition = "id = " + req.params.id;
-  
-    console.log("condition", condition);
   
     burger.update("devoured = true", condition, function(result) {
       if (result.changedRows == 0) {
         // If no rows were changed, then the ID must not exist, so 404
         return res.status(404).end();
       } else {
+        // Send changed Rows as reponse
         res.json(result.changedRows);
       }
     });
   });
 
+
+  // Delete burger method to remove the selected burger from db
   router.delete("/api/burger/:id", function(req, res) {
+    //get the id from the url
     var condition = "id = " + req.params.id;
   
     burger.delete(condition, function(result) {
@@ -50,6 +57,7 @@ router.get("/", function(req, res) {
         // If no rows were changed, then the ID must not exist, so 404
         return res.status(404).end();
       } else {
+         // Send changed Rows as reponse
         res.json(result.changedRows);
       }
     });

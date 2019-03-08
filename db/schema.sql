@@ -1,4 +1,5 @@
-
+-- Sql Syntax for creating and using burger database and table
+DROP TABLE IF EXISTS burgers_db;
 create database burgers_db;
 
 use burgers_db;

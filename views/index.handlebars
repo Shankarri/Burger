@@ -1,51 +1,80 @@
+{{!------------------- New Row for the Devour and Devoured display  ---------------------------------}}
 <div class="row" id="main-row">
+
     <div class="col-md-1"></div>
+
+    {{!-- Left side column displaying the burgers yet to be devoured  --}}
     <div class="col-md-4">
         <h2> Devour those Burgers</h2>
 
         <table>
+            {{!-- Loop through the result array to display all the burgers --}}
             {{#each burgers}}
+            {{!-- If devoured is false  --}}
             {{#unless devoured}}
             <tr>
+                {{!-- Display Burger name and devour button  --}}
                 <td> {{burger_name}}</td>
-                <td> <button class="devour-btn btn-primary btn" data-id="{{id}}" data-isdevoured="{{devoured}}">
+
+                {{!-- Map the burger id and devoured boolean for future use  --}}
+                <td>
+                    <button class="devour-btn btn-primary btn" data-id="{{id}}" data-isdevoured="{{devoured}}">
                         Devour!!</button>
-                    </li>
-                    {{/unless}}
+                </td>
+                {{/unless}}
             </tr>
             {{/each}}
         </table>
+
     </div>
 
-    <div class="col-md-2">
-    </div>
+    <div class="col-md-2"></div>
+
+    {{!-- Right side column displaying all the burgers already devoured  --}}
     <div class="col-md-4">
         <h2>Already Devoured</h2>
+
         <table>
+            {{!-- Loop through the result array to display all the burgers --}}
             {{#each burgers}}
+            {{!-- If devoured is true  --}}
             {{#if devoured}}
             <tr>
+                {{!-- Display Burger name  with Strike through to differentiate --}}
                 <td class="strikethrough"> {{burger_name}}</td>
                 <td>
-                    <button class="remove-btn btn-outline btn" data-id="{{id}}" data-isdevoured="{{devoured}}">
+                    {{!-- Adding a font Awesome for Trash can image --}}
+                    <button class="remove-btn btn" data-id="{{id}}" data-isdevoured="{{devoured}}">
                         <i class="fas fa-trash-alt"></i></button>
-                    </li>
+                </td>
                     {{/if}}
             </tr>
             {{/each}}
         </table>
+
     </div>
+
     <div class="col-md-1"></div>
+
 </div>
+{{!---------------------------------------------------}}
+
+{{!------------------- New Row for the Adding Burger Form ---------------------------------}}
 
 <div class="row mt-5">
+
     <div class="col-md-4 text-right">
         <h3 class="mt-2">Add a Burger :</h3>
     </div>
+    
+    {{!-- Form to get the burger name from user --}}
     <div class="col-md-6 text-left">
         <input type="text" id="burger_name" name="name" class="h-100 w-75" />
-        <button id="add-burger"class="btn btn-success mb-2 h-100" > Submit</button>
+        <button id="add-burger" class="btn btn-success mb-2 h-100"> Submit</button>
     </div>
+    
     <div class="col-md-2"></div>
 
 </div>
+
+{{!---------------------------------------------------}}
